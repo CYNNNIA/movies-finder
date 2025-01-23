@@ -25,3 +25,57 @@ nav ul li a {
   color: white;
   text-decoration: none;
 }
+form {
+  margin-bottom: 1rem;
+}
+
+form input {
+  padding: 0.5rem;
+  margin-right: 0.5rem;
+}
+
+form button {
+  padding: 0.5rem;
+  background-color: #333;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+form button:hover {
+  background-color: #555;
+}
+
+div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+div img {
+  width: 150px;
+  border-radius: 8px;
+}
+
+div h3 {
+  margin: 0.5rem 0;
+}
+
+div p {
+  color: gray;
+}
+
+div {
+  text-align: center;
+}
+
+div img {
+  width: 300px;
+  border-radius: 8px;
+  margin: 1rem 0;
+}
+
+div p {
+  color: gray;
+  line-height: 1.5;
+}

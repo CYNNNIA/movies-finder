@@ -1,42 +1,43 @@
+/* General container for the app */
 #root {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+  padding: 1rem;
+  font-family: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
+  background-color: #f5f5f5; /* Suave fondo claro */
+  color: #333;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
+/* For cards or sections */
 .card {
-  padding: 2em;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+  margin: 1rem 0;
+  transition: transform 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+/* For headers or key sections */
+h1 {
+  color: #222;
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
 }
 
 .read-the-docs {
-  color: #888;
+  color: #555;
+  font-size: 0.9rem;
+}
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 5rem 2rem 2rem; /* Añade margen superior para evitar que el contenido se solape con la Navbar */
+  text-align: center;
+  background-color: #f5f5f5; /* Fondo claro */
+  color: #333;
 }
