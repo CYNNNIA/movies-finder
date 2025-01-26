@@ -1,28 +1,28 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import axios from 'axios'
-import { API_KEY, BASE_URL } from '../config'
 import { useFavorites } from '../context/FavoritesContext'
 import { useWatchLater } from '../context/WatchLaterContext'
+import { API_KEY, BASE_URL } from '../config'
 import '../styles/MovieDetailsPage.css'
 
 function MovieDetailsPage() {
-  const { id } = useParams()
+  const { id } = useParams() // Captura el ID de la película desde la URL
   const [movie, setMovie] = useState(null)
 
+  // Contextos de favoritos y watch later
   const { favorites, addFavorite, removeFavorite } = useFavorites()
-  const { watchLater, addToWatchLater, removeFromWatchLater } = useWatchLater()
-
-  const isInFavorites = favorites.some((fav) => fav.id === parseInt(id))
-  const isInWatchLater = watchLater.some((movie) => movie.id === parseInt(id))
+  const { watchLater, addWatchLater, removeWatchLater } = useWatchLater()
 
   useEffect(() => {
     const fetchMovieDetails = async () => {
       try {
         const response = await axios.get(`${BASE_URL}/movie/${id}`, {
-          params: { api_key: API_KEY }
+          params: {
+            api_key: API_KEY
+          }
         })
-        setMovie(response.data)
+        setMovie(response.data) // Guarda los detalles de la película
       } catch (error) {
         console.error('Error fetching movie details:', error)
       }
@@ -30,6 +30,26 @@ function MovieDetailsPage() {
 
     fetchMovieDetails()
   }, [id])
+
+  // Verificar si la película ya está en Favoritos y Watch Later
+  const isInFavorites = favorites.some((item) => item.id === movie?.id)
+  const isInWatchLater = watchLater.some((item) => item.id === movie?.id)
+
+  const handleFavoritesToggle = () => {
+    if (isInFavorites) {
+      removeFavorite(movie.id) // Elimina la película de Favoritos
+    } else {
+      addFavorite(movie) // Añade la película a Favoritos
+    }
+  }
+
+  const handleWatchLaterToggle = () => {
+    if (isInWatchLater) {
+      removeWatchLater(movie.id) // Elimina la película de Watch Later
+    } else {
+      addWatchLater(movie) // Añade la película a Watch Later
+    }
+  }
 
   if (!movie) {
     return <p>Loading...</p>
@@ -46,27 +66,22 @@ function MovieDetailsPage() {
       <p>Release Date: {movie.release_date}</p>
       <p>Rating: {movie.vote_average}</p>
 
-      {/* Botón de favoritos con clases dinámicas */}
-      <button
-        className={`favorite-button ${isInFavorites ? 'remove' : 'add'}`}
-        onClick={() =>
-          isInFavorites ? removeFavorite(movie.id) : addFavorite(movie)
-        }
-      >
-        {isInFavorites ? 'Remove from Favorites' : 'Add to Favorites'}
-      </button>
+      {/* Botones para añadir/eliminar de Favoritos y Watch Later */}
+      <div className='buttons-container'>
+        <button
+          onClick={handleFavoritesToggle}
+          className={`favorites-button ${isInFavorites ? 'remove' : 'add'}`}
+        >
+          {isInFavorites ? 'Remove from Favorites' : 'Add to Favorites'}
+        </button>
 
-      {/* Botón de Watch Later con clases dinámicas */}
-      <button
-        className={`watch-later-button ${isInWatchLater ? 'remove' : 'add'}`}
-        onClick={() =>
-          isInWatchLater
-            ? removeFromWatchLater(movie.id)
-            : addToWatchLater(movie)
-        }
-      >
-        {isInWatchLater ? 'Remove from Watch Later' : 'Add to Watch Later'}
-      </button>
+        <button
+          onClick={handleWatchLaterToggle}
+          className={`watch-later-button ${isInWatchLater ? 'remove' : 'add'}`}
+        >
+          {isInWatchLater ? 'Remove from Watch Later' : 'Add to Watch Later'}
+        </button>
+      </div>
     </div>
   )
 }

@@ -1,16 +1,14 @@
-.remove-button {
-  margin-top: 0.5rem;
-  padding: 0.5rem 1rem;
-  background-color: #ff4d4d;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+.profile-container {
+  padding: 5rem 2rem;
+  text-align: center;
 }
 
-.remove-button:hover {
-  background-color: #e60000;
+.favorites-grid,
+.watch-later-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1rem;
 }
 
 .movie-item {
@@ -18,11 +16,17 @@
   padding: 1rem;
   border: 1px solid #ddd;
   border-radius: 8px;
-  background-color: #f9f9f9;
+  background-color: white;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.movie-item:hover {
-  transform: scale(1.02);
-  transition: transform 0.3s ease;
+.movie-item img {
+  max-width: 100%;
+  border-radius: 4px;
+}
+
+.movie-item h3 {
+  margin-top: 0.5rem;
+  font-size: 1rem;
+  color: var(--primary-color);
 }

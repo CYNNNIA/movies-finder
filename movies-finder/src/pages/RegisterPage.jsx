@@ -6,13 +6,12 @@ function RegisterPage() {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const [profilePicture, setProfilePicture] = useState('')
   const navigate = useNavigate()
 
   const handleRegister = (e) => {
     e.preventDefault()
-    console.log('Registered with:', { name, email, password, profilePicture })
-    navigate('/login')
+    console.log('Registered with:', { name, email, password })
+    navigate('/login') // Redirige al login después de registrarse
   }
 
   return (
@@ -50,16 +49,6 @@ function RegisterPage() {
             onChange={(e) => setPassword(e.target.value)}
             placeholder='Enter your password'
             required
-          />
-        </div>
-        <div className='form-group'>
-          <label htmlFor='profilePicture'>Profile Picture URL:</label>
-          <input
-            type='url'
-            id='profilePicture'
-            value={profilePicture}
-            onChange={(e) => setProfilePicture(e.target.value)}
-            placeholder='Enter your profile picture URL'
           />
         </div>
         <button type='submit' className='register-button'>

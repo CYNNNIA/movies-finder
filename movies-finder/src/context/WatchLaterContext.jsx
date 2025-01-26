@@ -1,36 +1,25 @@
-import React, { createContext, useContext, useState, useEffect } from 'react'
+import React, { createContext, useContext, useState } from 'react'
 
 const WatchLaterContext = createContext()
 
-export const useWatchLater = () => useContext(WatchLaterContext)
-
 export const WatchLaterProvider = ({ children }) => {
-  const [watchLater, setWatchLater] = useState(() => {
-    // Cargar Watch Later desde localStorage al iniciar
-    const storedWatchLater = localStorage.getItem('watchLater')
-    return storedWatchLater ? JSON.parse(storedWatchLater) : []
-  })
+  const [watchLater, setWatchLater] = useState([])
 
-  useEffect(() => {
-    // Guardar Watch Later en localStorage cada vez que cambien
-    localStorage.setItem('watchLater', JSON.stringify(watchLater))
-  }, [watchLater])
-
-  const addToWatchLater = (movie) => {
-    if (!watchLater.some((item) => item.id === movie.id)) {
-      setWatchLater([...watchLater, movie])
-    }
+  const addWatchLater = (movie) => {
+    setWatchLater((prev) => [...prev, movie])
   }
 
-  const removeFromWatchLater = (id) => {
-    setWatchLater(watchLater.filter((movie) => movie.id !== id))
+  const removeWatchLater = (movieId) => {
+    setWatchLater((prev) => prev.filter((movie) => movie.id !== movieId))
   }
 
   return (
     <WatchLaterContext.Provider
-      value={{ watchLater, addToWatchLater, removeFromWatchLater }}
+      value={{ watchLater, addWatchLater, removeWatchLater }}
     >
       {children}
     </WatchLaterContext.Provider>
   )
 }
+
+export const useWatchLater = () => useContext(WatchLaterContext)

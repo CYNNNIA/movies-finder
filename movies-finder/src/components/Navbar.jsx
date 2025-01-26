@@ -1,49 +1,44 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { useAuth } from '../context/AuthContext'
+import { useAuth } from '../context/AuthContext' // Accede al contexto de autenticación
 import '../styles/Navbar.css'
 
 function Navbar() {
-  const { isAuthenticated, logout } = useAuth()
+  const { user, logout } = useAuth() // Obtenemos el usuario y la función logout
 
   return (
     <nav className='navbar'>
-      <div className='navbar-title'>
-        <h1>Movies Finder</h1>
-      </div>
-      <ul className='navbar-list'>
+      <h1 className='navbar-title'>Movies Finder</h1>
+      <ul className='navbar-links'>
         <li>
-          <Link className='navbar-link' to='/'>
-            Home
-          </Link>
+          <Link to='/'>Home</Link>
         </li>
         <li>
-          <Link className='navbar-link' to='/search'>
-            Search
-          </Link>
+          <Link to='/search'>Search</Link>
         </li>
-      </ul>
-      <ul className='navbar-list'>
-        {isAuthenticated && (
+        {user ? (
           <>
+            {/* Mostrar saludo con el nombre del usuario */}
             <li>
-              <Link className='navbar-link' to='/profile'>
-                My Profile
-              </Link>
+              <Link to='/profile'>Hola, {user.name}</Link>
             </li>
+            {/* Botón de logout */}
             <li>
-              <button className='navbar-link' onClick={logout}>
+              <button onClick={logout} className='logout-button'>
                 Logout
               </button>
             </li>
           </>
-        )}
-        {!isAuthenticated && (
-          <li>
-            <Link className='navbar-link' to='/login'>
-              Login
-            </Link>
-          </li>
+        ) : (
+          <>
+            {/* Mostrar Login y Register si no hay usuario */}
+            <li>
+              <Link to='/login'>Login</Link>
+            </li>
+            <li>
+              <Link to='/register'>Register</Link>
+            </li>
+          </>
         )}
       </ul>
     </nav>
