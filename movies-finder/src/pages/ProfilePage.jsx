@@ -1,7 +1,7 @@
 import React from 'react'
-import '../styles/ProfilePage.css'
 import { useFavorites } from '../context/FavoritesContext'
-import { useWatchLater } from '../context/WatchLaterContext' // Nuevo contexto para Watch Later
+import { useWatchLater } from '../context/WatchLaterContext'
+import '../styles/ProfilePage.css'
 
 function ProfilePage() {
   const user = {
@@ -9,8 +9,8 @@ function ProfilePage() {
     email: 'john.doe@example.com'
   }
 
-  const { favorites } = useFavorites()
-  const { watchLater } = useWatchLater()
+  const { favorites, removeFavorite } = useFavorites() // Función para eliminar de favoritos
+  const { watchLater, removeFromWatchLater } = useWatchLater() // Función para eliminar de Watch Later
 
   return (
     <div className='profile-container'>
@@ -22,6 +22,7 @@ function ProfilePage() {
         </div>
       </div>
 
+      {/* Favorites Section */}
       <div className='favorites-section'>
         <h2>Your Favorites</h2>
         {favorites.length > 0 ? (
@@ -34,6 +35,12 @@ function ProfilePage() {
                   className='movie-image'
                 />
                 <h3>{movie.title}</h3>
+                <button
+                  className='remove-button'
+                  onClick={() => removeFavorite(movie.id)}
+                >
+                  Remove from Favorites
+                </button>
               </div>
             ))}
           </div>
@@ -42,6 +49,7 @@ function ProfilePage() {
         )}
       </div>
 
+      {/* Watch Later Section */}
       <div className='watch-later-section'>
         <h2>Watch Later</h2>
         {watchLater.length > 0 ? (
@@ -54,6 +62,12 @@ function ProfilePage() {
                   className='movie-image'
                 />
                 <h3>{movie.title}</h3>
+                <button
+                  className='remove-button'
+                  onClick={() => removeFromWatchLater(movie.id)}
+                >
+                  Remove from Watch Later
+                </button>
               </div>
             ))}
           </div>

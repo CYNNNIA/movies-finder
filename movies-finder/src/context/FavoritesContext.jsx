@@ -1,11 +1,20 @@
-import React, { createContext, useState, useContext } from 'react'
+import React, { createContext, useContext, useState, useEffect } from 'react'
 
 const FavoritesContext = createContext()
 
 export const useFavorites = () => useContext(FavoritesContext)
 
 export const FavoritesProvider = ({ children }) => {
-  const [favorites, setFavorites] = useState([])
+  const [favorites, setFavorites] = useState(() => {
+    // Cargar favoritos desde localStorage al iniciar
+    const storedFavorites = localStorage.getItem('favorites')
+    return storedFavorites ? JSON.parse(storedFavorites) : []
+  })
+
+  useEffect(() => {
+    // Guardar favoritos en localStorage cada vez que cambien
+    localStorage.setItem('favorites', JSON.stringify(favorites))
+  }, [favorites])
 
   const addFavorite = (movie) => {
     if (!favorites.some((fav) => fav.id === movie.id)) {

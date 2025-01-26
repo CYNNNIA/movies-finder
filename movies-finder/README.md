@@ -1,8 +1,32 @@
-# React + Vite
+# Movies Finder 🎥
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Movies Finder es una aplicación en React que permite a los usuarios buscar películas, añadirlas a favoritos o a "Watch Later", y ver detalles sobre ellas.
 
-Currently, two official plugins are available:
+## Tecnologías usadas
+- React
+- React Router
+- The Movie Database (TMDb) API
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Funcionalidades
+- Búsqueda de películas usando TMDb API.
+- Añadir y eliminar películas de "Favorites" y "Watch Later".
+- Vista de detalles de cada película.
+- Persistencia de datos con `localStorage`.
+- Diseño responsive.
+
+## Instalación
+1. Clona este repositorio:
+   ```bash
+   git clone <URL_DEL_REPOSITORIO>
+
+2. Instala las dependencias:
+
+npm install
+
+3. Inicia la aplicacion:
+
+npm start
+
+Autor:
+
+Cynthia Lorenzo Lopez

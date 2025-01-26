@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useNavigate, Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
 import '../styles/LoginPage.css'
 
@@ -13,7 +13,7 @@ function LoginPage() {
     e.preventDefault()
     console.log('Logged in with:', { email, password })
     login()
-    navigate('/profile')
+    navigate('/') // Redirige al Home después de iniciar sesión
   }
 
   return (
@@ -46,9 +46,6 @@ function LoginPage() {
           Login
         </button>
       </form>
-      <p className='register-link'>
-        Don't have an account? <Link to='/register'>Register here</Link>
-      </p>
     </div>
   )
 }

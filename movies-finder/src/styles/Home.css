@@ -1,14 +1,44 @@
-.home {
+.home-container {
+  padding: 2rem;
   text-align: center;
-  margin: 2rem;
 }
 
-.home h1 {
+h1 {
   font-size: 2.5rem;
-  color: #333;
+  margin-bottom: 1rem;
 }
 
-.home p {
+p {
   font-size: 1.2rem;
-  color: #666;
+  color: #555;
+}
+
+.recommendations-section {
+  margin-top: 2rem;
+}
+
+.recommendations-section h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.recommendations-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 1rem;
+}
+
+.movie-item {
+  text-align: center;
+}
+
+.movie-image {
+  width: 100%;
+  border-radius: 8px;
+  margin-bottom: 0.5rem;
+}
+
+.movie-title {
+  font-size: 1rem;
+  color: #333;
 }

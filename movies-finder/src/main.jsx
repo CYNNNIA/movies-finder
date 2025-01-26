@@ -5,7 +5,7 @@ import './index.css'
 import App from './App'
 import { AuthProvider } from './context/AuthContext'
 import { FavoritesProvider } from './context/FavoritesContext'
-import { WatchLaterProvider } from './context/WatchLaterContext' // Nuevo contexto
+import { WatchLaterProvider } from './context/WatchLaterContext'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
