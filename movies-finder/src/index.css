@@ -1,17 +1,17 @@
 :root {
-  /* Global font and colors */
+  
   font-family: 'Poppins', system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
   color-scheme: light dark;
 
   --primary-color: #0c000a;
-  --secondary-color: #ff4d4d; /* Rojo secundario */
-  --neutral-gray: #888; /* Gris neutral */
-  --light-background: #f9f9f9; /* Fondo claro */
-  --dark-background: #242424; /* Fondo oscuro */
-  --text-color: #333; /* Texto principal */
-  --heading-color: #222; /* Color de encabezados */
+  --secondary-color: #ff4d4d; 
+  --neutral-gray: #888; 
+  --light-background: #f9f9f9; 
+  --dark-background: #242424; 
+  --text-color: #333; 
+  --heading-color: #222; 
 }
 
 * {
@@ -39,10 +39,10 @@ body {
   min-height: 100vh;
   background-color: var(--light-background);
   color: var(--text-color);
-  overflow-x: hidden; /* Evitar desbordamiento horizontal */
+  overflow-x: hidden; 
 }
 
-/* General heading styles */
+
 h1,
 h2,
 h3 {
@@ -65,7 +65,7 @@ h3 {
   color: var(--neutral-gray);
 }
 
-/* Paragraphs */
+
 p {
   font-size: 1rem;
   line-height: 1.6;
@@ -73,7 +73,7 @@ p {
   color: var(--text-color);
 }
 
-/* Buttons */
+
 button {
   border-radius: 8px;
   border: none;
@@ -97,14 +97,14 @@ button:focus {
   outline: 2px solid var(--primary-color);
 }
 
-/* Images */
+
 img {
   max-width: 100%;
   height: auto;
   border-radius: 8px;
 }
 
-/* Containers */
+
 .container {
   max-width: 1600px;
   width: 90%;
@@ -112,7 +112,7 @@ img {
   padding: 1rem 2 rem;
 }
 
-/* Media queries for responsiveness */
+
 @media (max-width: 768px) {
   h1 {
     font-size: 2rem;

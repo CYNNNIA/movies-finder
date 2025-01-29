@@ -6,7 +6,6 @@ import '../styles/FavoritesPage.css'
 function FavoritesPage() {
   const { favorites } = useFavorites()
 
-  // Depuración: Verificar si los favoritos llegan correctamente
   console.log('Favoritos actuales:', favorites)
 
   if (!favorites || favorites.length === 0) {

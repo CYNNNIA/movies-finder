@@ -10,8 +10,9 @@ function RegisterPage() {
 
   const handleRegister = (e) => {
     e.preventDefault()
-    console.log('Registered with:', { name, email, password })
-    navigate('/login') // Redirige al login después de registrarse
+    const userData = { name, email } 
+    console.log('Registered with:', userData)
+    navigate('/login')
   }
 
   return (

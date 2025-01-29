@@ -3,14 +3,14 @@ import React, { createContext, useContext, useState } from 'react'
 const AuthContext = createContext()
 
 export const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(null) // Estado para el usuario autenticado
+  const [user, setUser] = useState(null) 
 
   const login = (userData) => {
-    setUser(userData) // Almacena los datos del usuario al iniciar sesión
+    setUser(userData) 
   }
 
   const logout = () => {
-    setUser(null) // Borra el usuario al cerrar sesión
+    setUser(null) 
   }
 
   return (

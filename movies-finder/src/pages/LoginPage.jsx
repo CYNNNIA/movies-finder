@@ -1,19 +1,20 @@
 import React, { useState } from 'react'
+
 import { useNavigate } from 'react-router-dom'
-import { useAuth } from '../context/AuthContext' // Accede al contexto de autenticación
+import { useAuth } from '../context/AuthContext'
 import '../styles/LoginPage.css'
 
 function LoginPage() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const { login } = useAuth() // Obtén la función login
+  const { login } = useAuth()
   const navigate = useNavigate()
 
   const handleLogin = (e) => {
     e.preventDefault()
-    const userData = { name: 'John Doe', email } // Simula datos del usuario
-    login(userData) // Llama a login con los datos del usuario
-    navigate('/') // Redirige al Home después de iniciar sesión
+    const userData = { name: email.split('@')[0], email } 
+    login(userData)
+    navigate('/') 
   }
 
   return (
