@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
 import '../styles/LoginPage.css'
@@ -12,15 +11,15 @@ function LoginPage() {
 
   const handleLogin = (e) => {
     e.preventDefault()
-    const userData = { name: email.split('@')[0], email } 
+    const userData = { name: email.split('@')[0], email }
     login(userData)
-    navigate('/') 
+    navigate('/')
   }
 
   return (
-    <div className='login-container'>
+    <section className='login-container' aria-label='Login Section'>
       <h1>Login</h1>
-      <form onSubmit={handleLogin} className='login-form'>
+      <form onSubmit={handleLogin} className='login-form' aria-label='Login Form'>
         <div className='form-group'>
           <label htmlFor='email'>Email:</label>
           <input
@@ -30,6 +29,7 @@ function LoginPage() {
             onChange={(e) => setEmail(e.target.value)}
             placeholder='Enter your email'
             required
+            aria-label='Email Input'
           />
         </div>
         <div className='form-group'>
@@ -41,13 +41,17 @@ function LoginPage() {
             onChange={(e) => setPassword(e.target.value)}
             placeholder='Enter your password'
             required
+            aria-label='Password Input'
           />
         </div>
         <button type='submit' className='login-button'>
           Login
         </button>
+        <div className='register-link'>
+          Don't have an account? <a href='/register'>Register here</a>
+        </div>
       </form>
-    </div>
+    </section>
   )
 }
 

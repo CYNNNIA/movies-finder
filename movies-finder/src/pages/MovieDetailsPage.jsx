@@ -7,10 +7,11 @@ import { API_KEY, BASE_URL } from '../config'
 import '../styles/MovieDetailsPage.css'
 
 function MovieDetailsPage() {
-  const { id } = useParams() // Captura el ID de la película desde la URL
+  const { id } = useParams()
   const [movie, setMovie] = useState(null)
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(null)
 
-  // Contextos de favoritos y watch later
   const { favorites, addFavorite, removeFavorite } = useFavorites()
   const { watchLater, addWatchLater, removeWatchLater } = useWatchLater()
 
@@ -18,59 +19,50 @@ function MovieDetailsPage() {
     const fetchMovieDetails = async () => {
       try {
         const response = await axios.get(`${BASE_URL}/movie/${id}`, {
-          params: {
-            api_key: API_KEY
-          }
+          params: { api_key: API_KEY }
         })
-        setMovie(response.data) // Guarda los detalles de la película
-      } catch (error) {
-        console.error('Error fetching movie details:', error)
+        setMovie(response.data)
+        setLoading(false)
+      } catch (err) {
+        console.error('Error fetching movie details:', err)
+        setError('Failed to load movie details.')
+        setLoading(false)
       }
     }
 
     fetchMovieDetails()
   }, [id])
 
-  // Verificar si la película ya está en Favoritos y Watch Later
   const isInFavorites = favorites.some((item) => item.id === movie?.id)
   const isInWatchLater = watchLater.some((item) => item.id === movie?.id)
 
   const handleFavoritesToggle = () => {
-    if (isInFavorites) {
-      removeFavorite(movie.id) // Elimina la película de Favoritos
-    } else {
-      addFavorite(movie) // Añade la película a Favoritos
-    }
+    isInFavorites ? removeFavorite(movie.id) : addFavorite(movie)
   }
 
   const handleWatchLaterToggle = () => {
-    if (isInWatchLater) {
-      removeWatchLater(movie.id) // Elimina la película de Watch Later
-    } else {
-      addWatchLater(movie) // Añade la película a Watch Later
-    }
+    isInWatchLater ? removeWatchLater(movie.id) : addWatchLater(movie)
   }
 
-  if (!movie) {
-    return <p>Loading...</p>
-  }
+  if (loading) return <p>Loading movie details...</p>
+  if (error) return <p>{error}</p>
 
   return (
     <div className='movie-details'>
       <h1>{movie.title}</h1>
       <img
         src={`https://image.tmdb.org/t/p/w300${movie.poster_path}`}
-        alt={movie.title}
+        alt={`Poster of ${movie.title}`}
       />
       <p>{movie.overview}</p>
       <p>Release Date: {movie.release_date}</p>
       <p>Rating: {movie.vote_average}</p>
 
-      {/* Botones para añadir/eliminar de Favoritos y Watch Later */}
       <div className='buttons-container'>
         <button
           onClick={handleFavoritesToggle}
           className={`favorites-button ${isInFavorites ? 'remove' : 'add'}`}
+          aria-label={isInFavorites ? 'Remove from favorites' : 'Add to favorites'}
         >
           {isInFavorites ? 'Remove from Favorites' : 'Add to Favorites'}
         </button>
@@ -78,6 +70,7 @@ function MovieDetailsPage() {
         <button
           onClick={handleWatchLaterToggle}
           className={`watch-later-button ${isInWatchLater ? 'remove' : 'add'}`}
+          aria-label={isInWatchLater ? 'Remove from watch later' : 'Add to watch later'}
         >
           {isInWatchLater ? 'Remove from Watch Later' : 'Add to Watch Later'}
         </button>

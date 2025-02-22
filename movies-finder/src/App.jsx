@@ -7,6 +7,7 @@ import LoginPage from './pages/LoginPage'
 import RegisterPage from './pages/RegisterPage'
 import ProfilePage from './pages/ProfilePage'
 import MovieDetailsPage from './pages/MovieDetailsPage'
+import NotFound from './pages/NotFound' // 💡 Importa el nuevo componente
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route path='/register' element={<RegisterPage />} />
           <Route path='/profile' element={<ProfilePage />} />
           <Route path='/movie/:id' element={<MovieDetailsPage />} />
+          <Route path='*' element={<NotFound />} /> {/* ✅ Ruta para 404 */}
         </Routes>
       </div>
     </Router>

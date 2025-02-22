@@ -7,6 +7,11 @@
   max-width: 100%;
   border-radius: 8px;
   margin: 1rem 0;
+  transition: transform 0.3s ease;
+}
+
+.movie-details img:hover {
+  transform: scale(1.05);
 }
 
 .buttons-container {
@@ -29,22 +34,22 @@
 
 .favorites-button.add,
 .watch-later-button.add {
-  background-color: var(--primary-color);
+  background-color: #4CAF50;
   color: white;
 }
 
 .favorites-button.add:hover,
 .watch-later-button.add:hover {
-  background-color: var(--secondary-color);
+  background-color: #388E3C;
 }
 
 .favorites-button.remove,
 .watch-later-button.remove {
-  background-color: var(--secondary-color);
+  background-color: #e74c3c;
   color: white;
 }
 
 .favorites-button.remove:hover,
 .watch-later-button.remove:hover {
-  background-color: darkred;
+  background-color: #c0392b;
 }

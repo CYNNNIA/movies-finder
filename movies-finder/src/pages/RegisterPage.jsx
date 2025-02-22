@@ -16,7 +16,7 @@ function RegisterPage() {
   }
 
   return (
-    <div className='register-container'>
+    <section className='register-container'>
       <h1>Register</h1>
       <form onSubmit={handleRegister} className='register-form'>
         <div className='form-group'>
@@ -56,7 +56,7 @@ function RegisterPage() {
           Register
         </button>
       </form>
-    </div>
+    </section>
   )
 }
 

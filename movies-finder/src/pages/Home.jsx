@@ -6,14 +6,14 @@ import '../styles/Home.css'
 
 function Home() {
   const [recommendations, setRecommendations] = useState([])
-  const [currentPage, setCurrentPage] = useState(1) 
-  const totalPages = 10 
+  const [currentPage, setCurrentPage] = useState(1)
+  const totalPages = 10
 
   useEffect(() => {
     const fetchRecommendations = async () => {
       try {
         const response = await axios.get(`${BASE_URL}/movie/popular`, {
-          params: { api_key: API_KEY, page: currentPage } 
+          params: { api_key: API_KEY, page: currentPage }
         })
         setRecommendations(response.data.results)
       } catch (error) {
@@ -22,38 +22,42 @@ function Home() {
     }
 
     fetchRecommendations()
-  }, [currentPage]) 
+  }, [currentPage])
 
-  
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber)
   }
 
   return (
-    <div className='home-container'>
-      <h1>Welcome to Movies Finder</h1>
-      <p>Discover your next favorite movie!</p>
+    <main className='home-container'>
+      <header>
+        <h1>Welcome to Movies Finder</h1>
+        <p>Discover your next favorite movie!</p>
+      </header>
 
-      <div className='recommendations-section'>
+      <section className='recommendations-section'>
         <h2>Recommended Movies</h2>
+
         {recommendations.length > 0 ? (
           <>
-            <div className='recommendations-grid'>
+            <section className='recommendations-grid'>
               {recommendations.map((movie) => (
-                <div key={movie.id} className='movie-item'>
+                <article key={movie.id} className='movie-item'>
                   <Link to={`/movie/${movie.id}`}>
-                    <img
-                      src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`}
-                      alt={movie.title}
-                      className='movie-image'
-                    />
-                    <h3 className='movie-title'>{movie.title}</h3>
+                    <figure>
+                      <img
+                        src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`}
+                        alt={movie.title}
+                        className='movie-image'
+                      />
+                      <figcaption className='movie-title'>{movie.title}</figcaption>
+                    </figure>
                   </Link>
-                </div>
+                </article>
               ))}
-            </div>
-            {/* Barra de paginación */}
-            <div className='pagination'>
+            </section>
+
+            <nav aria-label='Pagination' className='pagination'>
               {Array.from({ length: totalPages }, (_, index) => (
                 <button
                   key={index + 1}
@@ -63,13 +67,13 @@ function Home() {
                   {index + 1}
                 </button>
               ))}
-            </div>
+            </nav>
           </>
         ) : (
           <p>Loading recommendations...</p>
         )}
-      </div>
-    </div>
+      </section>
+    </main>
   )
 }
 
