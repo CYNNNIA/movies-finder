@@ -1,35 +1,35 @@
-/* Contenedor principal */
+
 .home-container {
   padding: 2rem;
   text-align: center;
 }
 
-/* Título principal */
+
 h1 {
   font-size: 2.5rem;
   margin-bottom: 1rem;
   color: #00796b;
 }
 
-/* Párrafos */
+
 p {
   font-size: 1.2rem;
   color: #555;
 }
 
-/* Sección de recomendaciones */
+
 .recommendations-section {
   margin-top: 2rem;
 }
 
-/* Título de sección */
+
 .recommendations-section h2 {
   font-size: 2rem;
   margin-bottom: 1rem;
   color: #00796b;
 }
 
-/* Grid de películas */
+
 .recommendations-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -37,7 +37,7 @@ p {
   margin-top: 2rem;
 }
 
-/* Tarjeta de película */
+
 .movie-item {
   text-align: center;
   padding: 1rem;
@@ -53,14 +53,14 @@ p {
   box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
 }
 
-/* Imagen de la película */
+
 .movie-image {
   width: 100%;
   border-radius: 8px;
   margin-bottom: 0.5rem;
 }
 
-/* Título de la película */
+
 .movie-title {
   font-size: 1.2rem;
   color: #333;
@@ -73,20 +73,26 @@ p {
   text-decoration: underline;
 }
 
-/* Estilo para <figcaption> */
+
 figcaption {
   font-size: 1.1rem;
   margin-top: 0.5rem;
   color: #444;
 }
 
-/* Paginación */
+
 .pagination {
   display: flex;
   justify-content: center;
+  flex-wrap: wrap; 
   margin-top: 1.5rem;
   gap: 0.5rem;
+  max-width: 100%; 
+  overflow-x: auto; 
+  white-space: nowrap; 
+  padding: 10px;
 }
+
 
 .pagination button {
   background-color: #333;
@@ -96,18 +102,22 @@ figcaption {
   border-radius: 5px;
   cursor: pointer;
   font-size: 1rem;
+  min-width: 40px; 
+  text-align: center;
 }
 
-.pagination button:hover {
-  background-color: #555;
-}
 
 .pagination .active {
   background-color: #646cff;
   font-weight: bold;
 }
 
-/* Responsive */
+
+.pagination button:hover {
+  background-color: #555;
+}
+
+
 @media (max-width: 768px) {
   .recommendations-grid {
     grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
@@ -119,5 +129,17 @@ figcaption {
 
   .movie-title {
     font-size: 1rem;
+  }
+
+  .pagination {
+    justify-content: center; 
+    flex-wrap: wrap; 
+    padding: 10px 0;
+  }
+
+  .pagination button {
+    font-size: 0.9rem;
+    padding: 0.4rem 0.8rem;
+    min-width: 35px; 
   }
 }
